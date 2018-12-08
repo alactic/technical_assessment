@@ -1,13 +1,13 @@
-import {Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put, Request, Response} from "@nestjs/common";
-import {UserService} from "../services/user.service";
-import {ApiUseTags} from "@nestjs/swagger";
-import {messages} from "../config/messages.conf";
-import {RestfulRes} from "../response/restful.res";
-import {UserReq} from "../requests/user.req";
-import {BulkUserReq} from "../requests/user.bulk";
-import {AuthReq} from "../requests/auth.req";
-import {ResetPassword} from "../requests/reset.password.req";
-import {ChangePasswordReq} from "../requests/change.password.req";
+import {Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put, Request, Response} from '@nestjs/common';
+import {UserService} from '../services/user.service';
+import {ApiUseTags} from '@nestjs/swagger';
+import {messages} from '../config/messages.conf';
+import {RestfulRes} from '../response/restful.res';
+import {UserReq} from '../requests/user.req';
+import {BulkUserReq} from '../requests/user.bulk';
+import {AuthReq} from '../requests/auth.req';
+import {ResetPassword} from '../requests/reset.password.req';
+import {ChangePasswordReq} from '../requests/change.password.req';
 
 @ApiUseTags('users')
 @Controller('users')
