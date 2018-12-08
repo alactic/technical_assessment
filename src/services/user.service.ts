@@ -64,4 +64,18 @@ export class UserService {
         }
     }
 
+    /**
+     * This is used to delete a user
+     * @param id
+     * @param req
+     * @returns {Promise<Account>}
+     */
+    public async remove(id, req?) {
+        const data = await this.userRepo.remove({_id: id});
+        if (data['ok'] !== 1) {
+            throw new BadRequestException(messages.failedToDelete);
+        }
+        return true;
+    }
+
 }

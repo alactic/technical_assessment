@@ -67,4 +67,19 @@ export class UserController {
         const data = await this.userService.getUserById(id);
         return data ? RestfulRes.success(res, messages.users.one.success, data) : RestfulRes.error(res, messages.users.one.failed);
     }
+
+    /**
+     * This is used to delete a user
+     * @param res
+     * @param req
+     * @param id
+     * @returns {Promise<void>}
+     */
+    @Delete(':id')
+    async removeUser(@Response() res, @Request() req, @Param('id', new ParseIntPipe()) id: number) {
+        const data = await this.userService.remove(id, req);
+        return data ? RestfulRes.success(res, messages.deleteSuccess, data) : RestfulRes.error(res, messages.operationFailed);
+    }
+
+
 }
