@@ -16,5 +16,20 @@ export class FleetController {
     constructor(private fleetService: FleetService) {
     }
 
+    /**
+     * This is used to create a new fleet
+     * @param res
+     * @param req
+     * @param fleet
+     * @returns {Promise<void>}
+     */
+    @Post()
+    async post(@Response() res, @Request() req, @Body() fleet: FleetReq) {
+        const data = await this.fleetService.create(req, fleet);
+        // return data;
+        // Please pay attention to messages to be returned and make sure right messages are returned
+        return data ? RestfulRes.success(res, messages.users.created, data) : RestfulRes.error(res, messages.operationFailed);
+    }
+
 
 }

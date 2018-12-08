@@ -1,9 +1,9 @@
-import {IsEmail, IsString, IsDefined, MinLength} from 'class-validator';
+import {IsEmail, IsString, IsDefined, MinLength, IsOptional} from 'class-validator';
 import {ApiModelProperty} from '@nestjs/swagger';
 
 export class FleetReq {
     @ApiModelProperty({description: 'id of the fleet'})
-    @IsDefined()
+    @IsOptional()
     id: number;
 
     @ApiModelProperty({description: 'Name of fleet'})

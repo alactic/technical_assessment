@@ -12,5 +12,18 @@ export class FleetService {
                 @Inject('CounterRepo') private readonly counterRepo: Model<Counter>) {
     }
 
+    /**
+     * This is used to create a fleet
+     * @param fleet
+     * @param type
+     * @param req
+     * @returns {Promise<void>}
+     */
+    async create(req, fleet) {
+        fleet['_id'] = await getNextSequenceValue(this.counterRepo, modelCounter.fleet);
+        const data = await this.fleetRepo.create(fleet);
+        return data;
+    }
+
 
 }
