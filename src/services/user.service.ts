@@ -13,7 +13,7 @@ export class UserService {
     }
 
     /**
-     * This is used to createOrUpdate a user either biller or consumer
+     * This is used to create a user
      * @param user
      * @param type
      * @param req
@@ -36,7 +36,7 @@ export class UserService {
 
 
     /**
-     * This is used to create Or Update a user either biller or consumer
+     * This is used to Update a user
      * @param user
      * @param type
      * @param req
@@ -48,6 +48,20 @@ export class UserService {
             throw new BadRequestException(messages.unable);
         }
         return user;
+    }
+
+    /**
+     * This is used to get user by its id
+     * @param id
+     * @param type
+     * @returns {Promise<T>}
+     */
+    async getUserById(id: number) {
+        try {
+            return await this.userRepo.findOne({_id: id});
+        } catch (e) {
+            throw new BadRequestException(catchErrors.formatError(e));
+        }
     }
 
 }
