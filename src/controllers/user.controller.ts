@@ -29,11 +29,23 @@ export class UserController {
      */
     @Post()
     async post(@Response() res, @Request() req, @Body() user: UserReq) {
-        this.userService.create(req, user).then(response => {
-            res.send(response);
-        }).catch(error => {
-            res.status(400).send(error);
-        });
+        const data = await this.userService.create(req, user);
+        // return data;
+        // Please pay attention to messages to be returned and make sure right messages are returned
+        return data ? RestfulRes.success(res, messages.users.created, data) : RestfulRes.error(res, messages.operationFailed);
+    }
+
+    /**
+     * This is used to fetch all users
+     * @param res
+     * @param request
+     * @returns {Promise<void>}
+     */
+    @Get()
+    async findAll(@Response() res, @Request() request) {
+        const data = await this.userService.findAll(request);
+        // return data;
+        return data ? RestfulRes.success(res, messages.users.list.success, data) : RestfulRes.error(res, messages.users.list.failed);
     }
 
 }

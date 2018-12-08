@@ -24,4 +24,13 @@ export class UserService {
         const data = await this.userRepo.create(user);
         return data;
     }
+
+    /**
+     * getting all the users
+     * @param req
+     * @returns {Promise<any>}
+     */
+    async findAll(req) {
+        return await this.userRepo.find();
+    }
 }
