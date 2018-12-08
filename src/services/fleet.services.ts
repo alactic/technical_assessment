@@ -25,5 +25,14 @@ export class FleetService {
         return data;
     }
 
+    /**
+     * getting all the fleets
+     * @param req
+     * @returns {Promise<any>}
+     */
+    async findAll(req) {
+        return await this.fleetRepo.find();
+    }
+
 
 }

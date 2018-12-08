@@ -31,5 +31,16 @@ export class FleetController {
         return data ? RestfulRes.success(res, messages.users.created, data) : RestfulRes.error(res, messages.operationFailed);
     }
 
+    /**
+     * This is used to fetch all fleets
+     * @param res
+     * @param request
+     * @returns {Promise<void>}
+     */
+    @Get()
+    async findAll(@Response() res, @Request() request) {
+        const data = await this.fleetService.findAll(request);
+        return data ? RestfulRes.success(res, messages.users.list.success, data) : RestfulRes.error(res, messages.users.list.failed);
+    }
 
 }
