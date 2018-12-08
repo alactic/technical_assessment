@@ -35,4 +35,20 @@ export class FleetService {
     }
 
 
+    /**
+     * This is used to Update a fleet
+     * @param fleet
+     * @param type
+     * @param req
+     * @returns {Promise<T>}
+     */
+    async update(fleet) {
+        const data = await this.fleetRepo.update({_id: fleet.id}, {$set: fleet});
+        if (!data['nModified']) {
+            throw new BadRequestException(messages.unable);
+        }
+        return fleet;
+    }
+
+
 }

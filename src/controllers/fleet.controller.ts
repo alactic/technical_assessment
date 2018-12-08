@@ -43,4 +43,18 @@ export class FleetController {
         return data ? RestfulRes.success(res, messages.users.list.success, data) : RestfulRes.error(res, messages.users.list.failed);
     }
 
+    /**
+     * This is used to Update fleet
+     * @param res
+     * @param req
+     * @param id
+     * @param fleet_reg
+     * @returns {Promise<void>}
+     */
+    @Put(':id')
+    async update(@Response() res, @Request() req, @Param('id', new ParseIntPipe()) id: number, @Body() fleet_reg: FleetReq) {
+        const data = await this.fleetService.update(fleet_reg, req);
+        return data ? RestfulRes.success(res, messages.users.updated, data) : RestfulRes.error(res, messages.operationFailed);
+    }
+
 }
