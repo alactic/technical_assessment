@@ -57,4 +57,17 @@ export class FleetController {
         return data ? RestfulRes.success(res, messages.users.updated, data) : RestfulRes.error(res, messages.operationFailed);
     }
 
+    /**
+     * This is used to fetch a fleet
+     * @param res
+     * @param id
+     * @returns {Promise<void>}
+     */
+    @Get(':id')
+    async findUserById(@Response() res, @Param('id', new ParseIntPipe()) id: number) {
+        const data = await this.fleetService.getfleetById(id);
+        return data ? RestfulRes.success(res, messages.users.one.success, data) : RestfulRes.error(res, messages.users.one.failed);
+    }
+
+
 }

@@ -50,5 +50,20 @@ export class FleetService {
         return fleet;
     }
 
+    /**
+     * This is used to get fleet by its id
+     * @param id
+     * @param type
+     * @returns {Promise<T>}
+     */
+    async getfleetById(id: number) {
+        try {
+            return await this.fleetRepo.findOne({_id: id});
+        } catch (e) {
+            throw new BadRequestException(catchErrors.formatError(e));
+        }
+    }
+
+
 
 }
