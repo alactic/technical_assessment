@@ -1,0 +1,1 @@
+export const SecreytKey = '@#$12345^&';

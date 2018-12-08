@@ -1,0 +1,23 @@
+{
+  "development": {
+    "database": "test_db",
+    "password": "",
+    "username": "",
+    "host": "localhost",
+    "port": 27017
+  },
+  "test": {
+    "database": "test_db",
+    "password": "",
+    "username": "",
+    "host": "localhost",
+    "port": 27017
+  },
+  "production": {
+    "database": "test_db",
+    "password": "",
+    "username": "",
+    "host": "localhost",
+    "port": 27017
+  }
+}
