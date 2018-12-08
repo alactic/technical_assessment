@@ -61,9 +61,9 @@ You can change the below port from `src/config/app.config.ts`.
 ```$xslt
 Test: 4002 
     
-Production: 4001
+Production: 4500
     
-Development: 4000
+Development: 4500
 ```
 ### Run a Build Version
 
@@ -77,43 +77,14 @@ The build version can be found in `dist` folder from app root.
 $ npm run start:dev
     
 #test mode
-$ npm run start:test
+$ npm run test
     
 #production mode
 $ npm run start:prod
 ```
 
-### DB Seeding After application is running
-```bash
-# From app root Development
-    
 $ npm run build
 $ cd/dist
-   
-# Seed Command
-    
-### Development
-### windows
-$ npm run db:seed:all-win
-### Unix
-$ npm run db:seed:all
-    
-### Test
-### windows
-$ npm run db:seed:test:all-win
-### Unix
-$ npm run db:seed:test:all
-    
-### Production
-### windows
-$ npm run db:seed:prod:all-win
-### Unix
-$ npm run db:seed:prod:all
-        
-## Undo Seeded Data
-Please choose an environment using the environment command stated above and then run:
-$ npm run db:seed:undo      
-```
 
 ## Support
 
