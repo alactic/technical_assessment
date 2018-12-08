@@ -1,15 +1,10 @@
-import {
-    Controller, Get, HttpStatus, Req, Response, Request, HttpException, Post, Param,
-    ParseIntPipe, Body, Put, Delete,
-} from '@nestjs/common';
-import {UserService} from '../services/user.service';
-import {ApiOperation, ApiUseTags} from '@nestjs/swagger';
-import {messages} from '../config/messages.conf';
-import {RestfulRes} from '../response/restful.res';
-import {UserEnum} from '../enums/user.enum';
-import {UserReq} from '../requests/user.req';
-import {BulkUserReq} from '../requests/user.bulk';
-import * as json2csv from 'json2csv';
+import {Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put, Request, Response} from "@nestjs/common";
+import {UserService} from "../services/user.service";
+import {ApiUseTags} from "@nestjs/swagger";
+import {messages} from "../config/messages.conf";
+import {RestfulRes} from "../response/restful.res";
+import {UserReq} from "../requests/user.req";
+import {BulkUserReq} from "../requests/user.bulk";
 import {AuthReq} from "../requests/auth.req";
 import {ResetPassword} from "../requests/reset.password.req";
 import {ChangePasswordReq} from "../requests/change.password.req";
@@ -44,8 +39,21 @@ export class UserController {
     @Get()
     async findAll(@Response() res, @Request() request) {
         const data = await this.userService.findAll(request);
-        // return data;
         return data ? RestfulRes.success(res, messages.users.list.success, data) : RestfulRes.error(res, messages.users.list.failed);
+    }
+
+    /**
+     * This is used to Update user
+     * @param res
+     * @param req
+     * @param id
+     * @param user_reg
+     * @returns {Promise<void>}
+     */
+    @Put(':id')
+    async update(@Response() res, @Request() req, @Param('id', new ParseIntPipe()) id: number, @Body() user_reg: UserReq) {
+        const data = await this.userService.update(user_reg, req);
+        return data ? RestfulRes.success(res, messages.users.updated, data) : RestfulRes.error(res, messages.operationFailed);
     }
 
 }

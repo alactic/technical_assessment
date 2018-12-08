@@ -33,4 +33,21 @@ export class UserService {
     async findAll(req) {
         return await this.userRepo.find();
     }
+
+
+    /**
+     * This is used to create Or Update a user either biller or consumer
+     * @param user
+     * @param type
+     * @param req
+     * @returns {Promise<T>}
+     */
+    async update(user) {
+        const data = await this.userRepo.update({_id: user.id}, {$set: user});
+        if (!data['nModified']) {
+            throw new BadRequestException(messages.unable);
+        }
+        return user;
+    }
+
 }
