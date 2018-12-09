@@ -24,7 +24,9 @@ export class UserController {
      */
     @Post()
     async post(@Response() res, @Request() req, @Body() user: UserReq) {
+        // console.log('user :: ', user)
         const data = await this.userService.create(req, user);
+      //  console.log('data result:: ', RestfulRes.success(res, messages.users.created, data));
         // return data;
         // Please pay attention to messages to be returned and make sure right messages are returned
         return data ? RestfulRes.success(res, messages.users.created, data) : RestfulRes.error(res, messages.operationFailed);

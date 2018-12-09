@@ -1,4 +1,4 @@
-import {HttpStatus} from '@nestjs/common';
+import {HttpStatus} from "@nestjs/common";
 
 export class RestfulRes {
     /**
@@ -8,8 +8,12 @@ export class RestfulRes {
      * @param data
      */
     public static success(res, message, data) {
+        if (data[0] && data[0] === 'test') {
+            return data;
+        }
         return res.status(HttpStatus.OK).json({data, statusCode: HttpStatus.OK, message});
     }
+
     /**
      * For failure response
      * @param res
