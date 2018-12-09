@@ -1,0 +1,297 @@
+{
+	"info": {
+		"_postman_id": "32e72780-8ffb-4022-aa96-dd74f02558da",
+		"name": "technical assessment",
+		"description": "Documentation of the entry points for API for developers contact directory and API to keep track of Fleet of a transport company ",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "API for developers contact directory",
+			"item": [
+				{
+					"name": "endpoint to create new user",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 0,\r\n  \"phone_no\": \"070769696695\",\r\n  \"first_name\": \"elv\",\r\n  \"last_name\": \"obi\",\r\n  \"email\": \"string@gmail.com\",\r\n  \"address\": \"string\",\r\n  \"category\": \"frontend developer\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:4500/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4500",
+							"path": [
+								"users"
+							]
+						},
+						"description": "This an endpoint to create new user by filling the required value. \nSample of the payload \n\n{\n  \"id\": 0,\n  \"phone_no\": \"07060747784\",\n  \"first_name\": \"Elvis\",\n  \"last_name\": \"Echezona\",\n  \"email\": \"okaforechezona1992@gmail.com\",\n  \"address\": \"51 ajayi road.\",\n  \"category\": \"backend developer\"\n}"
+					},
+					"response": []
+				},
+				{
+					"name": "endpoint to list all the users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:4500/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4500",
+							"path": [
+								"users"
+							]
+						},
+						"description": "This endpoint list all the users in the system"
+					},
+					"response": []
+				},
+				{
+					"name": "endpoint to update user",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:4500/users/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4500",
+							"path": [
+								"users",
+								"5"
+							]
+						},
+						"description": "This endpoint is use to update user by supplying its id in the payload and in the request parameter .\n\nSample payload is \n{ \"id\": 2, \n\"phone_no\": \"07060747784\",\n\"first_name\": \"Elvis\", \n\"last_name\": \"Echezona\",\n\"email\": \"okaforechezona1992@gmail.com\",\n\"address\": \"51 ajayi road.\",\n\"category\": \"backend developer\" \n}"
+					},
+					"response": []
+				},
+				{
+					"name": "endpoint to retrieve user by its id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:4500/users/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4500",
+							"path": [
+								"users",
+								"4"
+							]
+						},
+						"description": "This endpoint is use to retrieve user by its id by supplying the id as a request parameter"
+					},
+					"response": []
+				},
+				{
+					"name": "endpoint to delete user",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:4500/users/7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4500",
+							"path": [
+								"users",
+								"7"
+							]
+						},
+						"description": "This endpoint is use to delete user from the system by supplying its id as a request parameter"
+					},
+					"response": []
+				}
+			],
+			"description": "API for developers contact directory which consist of CREATE, READ, UPDATE AND DELETE."
+		},
+		{
+			"name": "API to keep track of Fleet of a transport company",
+			"item": [
+				{
+					"name": "endpoint to create new fleet",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:4500/fleets",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4500",
+							"path": [
+								"fleets"
+							]
+						},
+						"description": "This endpoint is use to create new fleet for the company by supplying the required value.\n\nSample payload is\n\n{\n  \"id\": 0,\n  \"name\": \"ABC\",\n  \"plate_number\": \"123-34\",\n  \"category\": \"car\"\n}"
+					},
+					"response": []
+				},
+				{
+					"name": "endpoint to retrieve all the fleets",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:4500/fleets",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4500",
+							"path": [
+								"fleets"
+							]
+						},
+						"description": "This endpoint is used to retrieve all the car from the system"
+					},
+					"response": []
+				},
+				{
+					"name": "endpoint to update a fleet by its id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:4500/fleets/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4500",
+							"path": [
+								"fleets",
+								"2"
+							]
+						},
+						"description": "This endpoint is use to update fleet for the company by supplying the id in the payload and in the request parameter.\n\nSample payload is\n\n{\n  \"id\": 2,\n  \"name\": \"rty\",\n  \"plate_number\": \"1w3-34\",\n  \"category\": \"truck\"\n}"
+					},
+					"response": []
+				},
+				{
+					"name": "endpoint to retrieve fleet by its id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:4500/fleets/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4500",
+							"path": [
+								"fleets",
+								"3"
+							]
+						},
+						"description": "This endpoint is use to retrieve fleet by its id by supplying the id as a request parameter"
+					},
+					"response": []
+				},
+				{
+					"name": "endpoint to delete a fleet",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:4500/fleets/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4500",
+							"path": [
+								"fleets",
+								"3"
+							]
+						},
+						"description": "This endpoint is use to delete a fleet from the system by supplying its id as a request parameter"
+					},
+					"response": []
+				}
+			],
+			"description": "API to keep track of Fleet of a transport company which consist of CREATE, READ, UPDATE AND DELETE.",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "7fdbd1f8-e485-4c63-a1b8-0588c7b1c996",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "004ec10d-7e82-4bbb-82a6-611eea1a3f93",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	]
+}
