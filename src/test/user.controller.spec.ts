@@ -25,4 +25,12 @@ describe('UserController', () => {
             expect(await userController.post(response)).toBe(result);
         });
     });
+    describe('get', () => {
+        it('should get all users', async () => {
+            const result = ['test'];
+            jest.spyOn(userService, 'findAll').mockImplementation(() => result);
+
+            expect(await userController.findAll(response)).toBe(result);
+        });
+    });
 });
