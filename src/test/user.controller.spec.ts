@@ -44,8 +44,8 @@ describe('UserController', () => {
             expect(await userController.findUserById(response)).toBe(result);
         });
     });
-    describe('get user by id', () => {
-        it('should get user by id', async () => {
+    describe('remove user by id', () => {
+        it('should remove user by id', async () => {
             const result = ['test'];
             jest.spyOn(userService, 'remove').mockImplementation(() => result);
 
