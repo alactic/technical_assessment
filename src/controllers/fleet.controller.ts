@@ -64,7 +64,7 @@ export class FleetController {
      * @returns {Promise<void>}
      */
     @Get(':id')
-    async findUserById(@Response() res, @Param('id', new ParseIntPipe()) id: number) {
+    async findFleetById(@Response() res, @Param('id', new ParseIntPipe()) id: number) {
         const data = await this.fleetService.getfleetById(id);
         return data ? RestfulRes.success(res, messages.users.one.success, data) : RestfulRes.error(res, messages.users.one.failed);
     }
@@ -77,7 +77,7 @@ export class FleetController {
      * @returns {Promise<void>}
      */
     @Delete(':id')
-    async removeUser(@Response() res, @Request() req, @Param('id', new ParseIntPipe()) id: number) {
+    async removeFleet(@Response() res, @Request() req, @Param('id', new ParseIntPipe()) id: number) {
         const data = await this.fleetService.remove(id, req);
         return data ? RestfulRes.success(res, messages.deleteSuccess, data) : RestfulRes.error(res, messages.operationFailed);
     }
