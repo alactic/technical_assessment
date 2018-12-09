@@ -64,6 +64,18 @@ export class FleetService {
         }
     }
 
-
+    /**
+     * This is used to delete a fleet
+     * @param id
+     * @param req
+     * @returns {Promise<Account>}
+     */
+    public async remove(id, req?) {
+        const data = await this.fleetRepo.remove({_id: id});
+        if (data['ok'] !== 1) {
+            throw new BadRequestException(messages.failedToDelete);
+        }
+        return true;
+    }
 
 }
