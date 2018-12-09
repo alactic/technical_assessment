@@ -20,4 +20,12 @@ describe('FleetController', () => {
             expect(await fleetController.post(response)).toBe(result);
         });
     });
+    describe('get', () => {
+        it('should get all fleets', async () => {
+            const result = ['test'];
+            jest.spyOn(fleetService, 'findAll').mockImplementation(() => result);
+
+            expect(await fleetController.findAll(response)).toBe(result);
+        });
+    });
 });
