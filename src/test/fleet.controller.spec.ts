@@ -36,5 +36,12 @@ describe('FleetController', () => {
             expect(await fleetController.update(response)).toBe(result);
         });
     });
+    describe('get fleet by id', () => {
+        it('should get fleet by id', async () => {
+            const result = ['test'];
+            jest.spyOn(fleetService, 'getfleetById').mockImplementation(() => result);
 
+            expect(await fleetController.findFleetById(response)).toBe(result);
+        });
+    });
 });
