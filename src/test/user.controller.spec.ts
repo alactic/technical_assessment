@@ -1,12 +1,7 @@
-import {UserController} from "../controllers/user.controller";
-import {UserService} from "../services/user.service";
+import {UserController} from '../controllers/user.controller';
+import {UserService} from '../services/user.service';
 const httpMocks = require('node-mocks-http');
 
-
-const request = httpMocks.createRequest({
-    method: 'POST',
-    url: '/users',
-});
 const response = httpMocks.createResponse();
 
 describe('UserController', () => {
@@ -39,6 +34,14 @@ describe('UserController', () => {
             jest.spyOn(userService, 'update').mockImplementation(() => result);
 
             expect(await userController.update(response)).toBe(result);
+        });
+    });
+    describe('get user by id', () => {
+        it('should get user by id', async () => {
+            const result = ['test'];
+            jest.spyOn(userService, 'getUserById').mockImplementation(() => result);
+
+            expect(await userController.findUserById(response)).toBe(result);
         });
     });
 });
