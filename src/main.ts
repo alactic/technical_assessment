@@ -49,7 +49,7 @@ async function bootstrap() {
 
     Swagger.configure();
     Swagger.setup(app);
-    await app.listen(process.env.PORT || 4500);
+    await app.listen(process.env.PORT || 4900);
 }
 
 bootstrap();

@@ -1,9 +1,9 @@
-import {IsEmail, IsString, IsDefined, MinLength} from 'class-validator';
-import {ApiModelProperty} from '@nestjs/swagger';
+import {IsDefined, IsEmail, IsOptional, IsString, MinLength} from "class-validator";
+import {ApiModelProperty} from "@nestjs/swagger";
 
 export class UserReq {
     @ApiModelProperty({description: 'id of the user'})
-    @IsDefined()
+    @IsOptional()
     id: number;
 
     @ApiModelProperty({description: 'Phone number of an account'})
@@ -34,6 +34,13 @@ export class UserReq {
 
     @ApiModelProperty({description: 'category of user'})
     @IsDefined()
+    category: string;
+
+}
+export class CategoryReq {
+    @ApiModelProperty({description: 'category of user'})
+    @IsDefined()
+    @IsString()
     category: string;
 
 }

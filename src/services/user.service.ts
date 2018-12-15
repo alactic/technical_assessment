@@ -6,6 +6,8 @@ import {compare, genSalt, hash} from "bcryptjs";
 import {messages} from "../config/messages.conf";
 import {modelCounter} from "../config/constants.conf";
 import {Counter} from "../models/counter";
+import {jwt} from "../utils/jwt";
+import {CategoryReq} from "../requests/user.req";
 
 export class UserService {
     constructor(@Inject('UserRepo') private readonly userRepo: Model<User>,
@@ -20,9 +22,23 @@ export class UserService {
      * @returns {Promise<void>}
      */
     async create(req, user) {
+        const emailExist = await this.userRepo.findOne({email: user['email']});
+        const phoneExist = await this.userRepo.findOne({phone_no: user['phone_no']});
+        if (emailExist) {
+            throw new BadRequestException(messages.emailExist);
+        } else if (phoneExist) {
+            throw new BadRequestException(messages.phoneExist);
+        }
+        const response = {
+            user_details: [],
+            token: '',
+        };
+        const payload = {email: user['email'], _id: user['_id']};
         user['_id'] = await getNextSequenceValue(this.counterRepo, modelCounter.user);
-        const data = await this.userRepo.create(user);
-        return data;
+        response['user_details'] = await this.userRepo.create(user);
+        response['token'] = jwt.sign(payload);
+
+        return response;
     }
 
     /**
@@ -78,4 +94,11 @@ export class UserService {
         return true;
     }
 
+    async getUserByCategory(category: CategoryReq) {
+        try {
+            return await this.userRepo.find({category});
+        } catch (e) {
+            throw new BadRequestException(catchErrors.formatError(e));
+        }
+    }
 }

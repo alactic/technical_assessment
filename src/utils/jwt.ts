@@ -9,7 +9,7 @@ import {messages} from '../config/messages.conf';
  */
 export const jwt = {
     sign: (data) => {
-        return jsonwebtoken.sign(data, JWT_KEY);
+        return jsonwebtoken.sign(data, JWT_KEY, {expiresIn: 3600});
     },
     decode: (authorization: string) => {
         try {
@@ -17,6 +17,7 @@ export const jwt = {
                 throw new NotAcceptableException(messages.noAuthHeader);
             }
             const token = (authorization.indexOf(' ') > -1) ? authorization.split(' ')[1] : authorization;
+            console.log('decoded token :: ', jsonwebtoken.decode(token));
             return jsonwebtoken.decode(token);
         }
         catch (e) {

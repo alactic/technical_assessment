@@ -1,13 +1,28 @@
-import {Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put, Request, Response} from '@nestjs/common';
+import {
+    BadRequestException,
+    Body,
+    Controller,
+    Delete,
+    Get,
+    HttpStatus,
+    Param,
+    ParseIntPipe,
+    Post,
+    Put,
+    Query,
+    Request,
+    Response
+} from '@nestjs/common';
 import {UserService} from '../services/user.service';
-import {ApiUseTags} from '@nestjs/swagger';
+import {ApiImplicitQuery, ApiUseTags} from '@nestjs/swagger';
 import {messages} from '../config/messages.conf';
 import {RestfulRes} from '../response/restful.res';
-import {UserReq} from '../requests/user.req';
+import {CategoryReq, UserReq} from '../requests/user.req';
 import {BulkUserReq} from '../requests/user.bulk';
 import {AuthReq} from '../requests/auth.req';
 import {ResetPassword} from '../requests/reset.password.req';
 import {ChangePasswordReq} from '../requests/change.password.req';
+import {jwt} from '../utils/jwt';
 
 @ApiUseTags('users')
 @Controller('users')
@@ -24,11 +39,7 @@ export class UserController {
      */
     @Post()
     async post(@Response() res, @Request() req, @Body() user: UserReq) {
-        // console.log('user :: ', user)
         const data = await this.userService.create(req, user);
-      //  console.log('data result:: ', RestfulRes.success(res, messages.users.created, data));
-        // return data;
-        // Please pay attention to messages to be returned and make sure right messages are returned
         return data ? RestfulRes.success(res, messages.users.created, data) : RestfulRes.error(res, messages.operationFailed);
     }
 
@@ -42,6 +53,26 @@ export class UserController {
     async findAll(@Response() res, @Request() request) {
         const data = await this.userService.findAll(request);
         return data ? RestfulRes.success(res, messages.users.list.success, data) : RestfulRes.error(res, messages.users.list.failed);
+    }
+
+    /**
+     * This is used to fetch a user by category
+     * @param res
+     * @param id
+     * @returns {Promise<void>}
+     */
+    @ApiImplicitQuery({
+        name: 'category',
+        description: 'category of the user',
+        required: false,
+    })
+    @Get('category')
+    async findUserByCategory(@Request() req, @Response() res, @Query('category') category) {
+        if (!category || category === '') {
+            throw new BadRequestException(messages.emptycategory);
+        }
+        const data = await this.userService.getUserByCategory(category);
+        return data ? RestfulRes.success(res, messages.users.one.success, data) : RestfulRes.error(res, messages.users.one.failed);
     }
 
     /**
@@ -65,7 +96,8 @@ export class UserController {
      * @returns {Promise<void>}
      */
     @Get(':id')
-    async findUserById(@Response() res, @Param('id', new ParseIntPipe()) id: number) {
+    async findUserById(@Request() req, @Response() res, @Param('id', new ParseIntPipe()) id: number) {
+        jwt.verify(req['headers']['authorization']);
         const data = await this.userService.getUserById(id);
         return data ? RestfulRes.success(res, messages.users.one.success, data) : RestfulRes.error(res, messages.users.one.failed);
     }
@@ -82,6 +114,4 @@ export class UserController {
         const data = await this.userService.remove(id, req);
         return data ? RestfulRes.success(res, messages.deleteSuccess, data) : RestfulRes.error(res, messages.operationFailed);
     }
-
-
 }

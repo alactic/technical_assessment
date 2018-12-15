@@ -78,4 +78,11 @@ export class FleetService {
         return true;
     }
 
+    async getUserByCategory(category: any) {
+        try {
+            return await this.fleetRepo.find({category});
+        } catch (e) {
+            throw new BadRequestException(catchErrors.formatError(e));
+        }
+    }
 }

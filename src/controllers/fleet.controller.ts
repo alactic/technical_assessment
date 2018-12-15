@@ -1,6 +1,10 @@
-import {Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put, Request, Response} from '@nestjs/common';
+import {
+    BadRequestException,
+    Body, Controller, Delete, Get, HttpStatus, Param, ParseIntPipe, Post, Put, Query, Request,
+    Response
+} from '@nestjs/common';
 import {UserService} from '../services/fleet.service';
-import {ApiUseTags} from '@nestjs/swagger';
+import {ApiImplicitQuery, ApiUseTags} from '@nestjs/swagger';
 import {messages} from '../config/messages.conf';
 import {RestfulRes} from '../response/restful.res';
 import {FleetReq, UserReq} from '../requests/fleet.req';
@@ -9,6 +13,7 @@ import {AuthReq} from '../requests/auth.req';
 import {ResetPassword} from '../requests/reset.password.req';
 import {ChangePasswordReq} from '../requests/change.password.req';
 import {FleetService} from "../services/fleet.services";
+import {HttpException} from "@nestjs/core";
 
 @ApiUseTags('fleets')
 @Controller('fleets')
@@ -41,6 +46,26 @@ export class FleetController {
     async findAll(@Response() res, @Request() request) {
         const data = await this.fleetService.findAll(request);
         return data ? RestfulRes.success(res, messages.users.list.success, data) : RestfulRes.error(res, messages.users.list.failed);
+    }
+
+    /**
+     * This is used to fetch a user by category
+     * @param res
+     * @param id
+     * @returns {Promise<void>}
+     */
+    @ApiImplicitQuery({
+        name: 'category',
+        description: 'category of the fleet',
+        required: false,
+    })
+    @Get('category')
+    async findFleetByCategory(@Request() req, @Response() res, @Query('category') category) {
+        if (!category || category === '') {
+            throw new BadRequestException(messages.emptycategory);
+        }
+        const data = await this.fleetService.getUserByCategory(category);
+        return data ? RestfulRes.success(res, messages.users.one.success, data) : RestfulRes.error(res, messages.users.one.failed);
     }
 
     /**

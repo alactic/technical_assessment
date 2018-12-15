@@ -1,6 +1,7 @@
 export const messages = {
     riskTools: 'Successfully listed all risk tools',
     invalidURL: 'Invalid URL',
+    emptycategory: 'Category query param is empty',
     moreThanOne: 'General Multiplier cannot be more than one',
     operationFailed: 'Failed to perform operation, please try again.',
     querySearched: 'Query2 searched was success',
@@ -59,6 +60,7 @@ export const messages = {
     toggle: 'Toggling was successfully',
     base64: 'Invalid base64 in file sent',
     emailExist: 'Email already exist',
+    phoneExist: 'Phone already exist',
     fileKey: 'No File Name Specified. please provide file name',
     invalidUser: 'Invalid credentials',
     invalidPwd: 'Invalid Password, Password should contain at least 8 characters having an uppercase letter, a special character and a number.',
