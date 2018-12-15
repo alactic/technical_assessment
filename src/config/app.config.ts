@@ -9,13 +9,13 @@ export const SEED_LENGTH = 30;
 
 export const WEB_URL = {
     prod: {
-        site: 'http://cba.upltest.com',
+        site: '',
     },
     dev: {
-        site: 'http://cba.upltest.com',
+        site: '',
     },
     test: {
-        site: 'http://cba.upltest.com',
+        site: '',
     },
 };
 

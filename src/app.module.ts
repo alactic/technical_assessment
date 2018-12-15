@@ -5,16 +5,12 @@ import {CorsMiddleware} from './shared/middlewares/cors-middleware';
 import {MiddlewaresConsumer} from '@nestjs/common/interfaces/middlewares';
 import {SharedModule} from './modules/shared.module';
 import {ValidationModule} from './modules/validation.module';
-import {ProductModule} from './modules/Product.module';
-import {CategoryModule} from "./modules/Category.module";
 
 @Module({
     imports: [
         UserModule,
         SharedModule,
         ValidationModule,
-        ProductModule,
-        CategoryModule,
     ],
     controllers: [AppController],
     components: [],
